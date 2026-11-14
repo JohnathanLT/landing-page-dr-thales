@@ -8,7 +8,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Brain, Check, ChevronDown, CircleH
 import { site, getCredentialLine, getTitle, getWhatsAppUrl, withBasePath } from "@/config/site";
 
 const iconMap = { brain: Brain, cloud: Cloud, moon: Moon, focus: Focus, waves: Waves, sparkles: Sparkles, heart: Heart, repeat: Repeat2 };
-const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.58, ease: "easeOut" } } };
+const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.58, ease: "easeOut" as const } } };
 
 function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const reduced = useReducedMotion();
