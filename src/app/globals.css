@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body { margin: 0; background: #FAFAF7; color: #1E2A2E; }
+::selection { background: #dbe8e2; color: #1F4E5A; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #C97B5A; outline-offset: 3px; }
+.serif { font-family: var(--font-fraunces), Georgia, serif; }
+.section-kicker { color: #a85f42; font-size: .74rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.section-title { font-family: var(--font-fraunces), Georgia, serif; font-size: clamp(2rem,4vw,3.35rem); line-height: 1.12; letter-spacing: -.035em; color: #1E2A2E; }
+.section-wrap { width: min(100% - 2.5rem, 76rem); margin-inline: auto; }
+.organic { border-radius: 46% 54% 62% 38% / 38% 42% 58% 62%; }
+.fade-in { animation: fadeIn .7s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
