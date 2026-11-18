@@ -36,3 +36,15 @@ As imagens enviadas estão em `public/images` e são exibidas por `next/image`, 
 ## Privacidade
 
 A política publicada fica em `/politica-de-privacidade`. Revise os dados do controlador, fornecedores, retenção e canais de direitos antes de colocar o formulário em produção. A mensagem do formulário orienta a pessoa a não enviar dados de saúde.
+
+## Demonstração do prontuário
+
+A rota `/sistema` é uma demonstração separada do site público. Ela usa Dexie/IndexedDB local no navegador e contém apenas pacientes inventados. A faixa de aviso permanece visível; não insira dados reais. O conteúdo da sessão fica em `sessionStorage` e os registros demonstrativos em IndexedDB. Não há conexão com API.
+
+Os repositórios são definidos em `src/sistema/data/repositories.ts` e a implementação ativa em `DexieRepo.ts`. `SupabaseRepo.ts` e `supabase/schema.sql` são apenas pontos de partida com TODOs; não há Supabase configurado. Não ative-os antes de implementar autenticação, políticas RLS, controle de acesso, criptografia e revisão jurídica/técnica.
+
+Os dados iniciais são gerados por `src/sistema/data/seed.ts`. “Restaurar dados de demonstração” substitui o banco local pelos registros fictícios. A exportação JSON é iniciada e baixada localmente.
+
+O catálogo `cid10-capitulo-v.json` contém as categorias e subcategorias F00–F99 e inclui também as categorias e subcategorias Z e R da tabela CID-10 V2008 do DATASUS. Para atualizar, extraia `CID-10-SUBCATEGORIAS.CSV` e `CID-10-CATEGORIAS.CSV` do arquivo oficial e execute `pnpm dlx tsx scripts/importar-cid10.ts <pasta/CID-10-SUBCATEGORIAS.CSV>`. O importador lê automaticamente o arquivo de categorias vizinho e documenta as fontes no JSON gerado. Confira a versão exigida pelo sistema em que os códigos forem utilizados.
+
+As faixas de pontuação das escalas são demonstrativas e precisam ser interpretadas por profissional habilitado: [PHQ-9 (APA)](https://www.psychiatry.org/getmedia/a3986be5-94af-42e7-afce-19234c2f4998/APA-DSM5TR-SeverityMeasureForDepressionAdult.pdf) e [GAD-7](https://portal.ct.gov/-/media/dmhas/publications/gad-7-anxiety-scale.pdf).

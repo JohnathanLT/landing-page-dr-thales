@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { site, getTitle, getCredentialLine, getSiteUrl } from "@/config/site";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap" });
+const inter = localFont({ src: "../../public/fonts/inter-latin.woff2", variable: "--font-inter", weight: "100 900", display: "swap" });
+const fraunces = localFont({ src: "../../public/fonts/fraunces-latin.woff2", variable: "--font-fraunces", weight: "100 900", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
