@@ -16,7 +16,9 @@ export class SupabaseRepo implements SistemaRepo {
   async buscarAtendimento(_id: string): Promise<Encounter | undefined> { throw new Error("TODO: buscar atendimento com RLS"); }
   async salvarAtendimento(_atendimento: Encounter): Promise<void> { throw new Error("TODO: salvar somente atendimento em andamento"); }
   async encerrarAtendimento(_id: string, _fimEm: string): Promise<void> { throw new Error("TODO: encerrar atendimento com trilha de auditoria"); }
+  async concluirAtendimento(_id: string, _fimEm: string, _auditoria: AuditEntry): Promise<Encounter> { throw new Error("TODO: concluir atendimento e registrar auditoria em transação segura"); }
   async adicionarAdendo(_id: string, _adendo: Addendum): Promise<void> { throw new Error("TODO: anexar correção datada sem editar registro encerrado"); }
+  async ajustarHorariosAtendimento(_id: string, _inicioEm: string, _fimEm: string, _justificativa: string, _auditoria: AuditEntry): Promise<void> { throw new Error("TODO: ajustar horário com justificativa e auditoria"); }
   async listarAuditoria(_entidadeId?: string): Promise<AuditEntry[]> { throw new Error("TODO: consultar trilha de auditoria com RLS"); }
   async registrarAuditoria(_entry: AuditEntry): Promise<void> { throw new Error("TODO: gravar auditoria em transação segura"); }
   async buscarConfiguracao(): Promise<Settings> { throw new Error("TODO: ler configurações locais do médico"); }

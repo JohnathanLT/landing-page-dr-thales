@@ -11,7 +11,9 @@ export interface AnamneseRepo {
 export interface AtendimentoRepo {
   listarAtendimentos(pacienteId?: string): Promise<Encounter[]>; buscarAtendimento(id: string): Promise<Encounter | undefined>;
   salvarAtendimento(atendimento: Encounter): Promise<void>; encerrarAtendimento(id: string, fimEm: string): Promise<void>;
+  concluirAtendimento(id: string, fimEm: string, auditoria: AuditEntry): Promise<Encounter>;
   adicionarAdendo(id: string, adendo: Addendum): Promise<void>;
+  ajustarHorariosAtendimento(id: string, inicioEm: string, fimEm: string, justificativa: string, auditoria: AuditEntry): Promise<void>;
 }
 export interface AuditoriaRepo {
   listarAuditoria(entidadeId?: string): Promise<AuditEntry[]>; registrarAuditoria(entry: AuditEntry): Promise<void>;

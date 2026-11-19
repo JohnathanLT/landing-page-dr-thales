@@ -6,7 +6,13 @@ export type Patient = {
   emergenciaVinculo?: string; emergenciaTelefone?: string; responsavelLegal?: string;
   modalidadePlano?: string; criadoEm: string; atualizadoEm: string;
   arquivado?: boolean; riscoAltoRevisto?: boolean;
+  medicacoesEmUso?: Medication[];
+  retornos?: FollowUp[];
 };
+
+export type Medication = { id: string; nome: string; dose: string; posologia: string; inicioEm: string; ativo: boolean };
+export type MedicationChange = { id: string; medicamento: string; acao: "Manteve" | "Ajustou dose" | "Suspendeu" | "Iniciou nova medicação"; doseAnterior?: string; doseNova?: string; posologia?: string; motivo?: string };
+export type FollowUp = { id: string; data: string; status: "Previsto" | "Realizado" | "Remarcado" | "Faltou"; dataOriginal?: string; atendimentoId?: string };
 
 export type Diagnosis = {
   sistema: "CID-10" | "CID-11"; codigo: string; descricao: string;
@@ -28,6 +34,13 @@ export type Encounter = {
   risco: string; diagnosticos: Diagnosis[]; conduta: string; prescricao: string;
   exames: string; encaminhamentos: string; proximoRetorno?: string;
   status: "em andamento" | "encerrado"; encerradoEm?: string; adendos: Addendum[];
+  relatoDesdeUltima?: string; eventos?: string[]; cgiS?: number; cgiI?: number;
+  acessoMeios?: string; planoSeguranca?: string; orientacoes?: string;
+  indicadores?: { humor?: number; ansiedade?: number; sono?: number; funcionamento?: number };
+  adesao?: "Boa" | "Parcial" | "Não aderiu"; adesaoMotivo?: string; efeitosColaterais?: string;
+  escalas?: { phq9?: number; gad7?: number; respostas?: Record<string, number> };
+  alteracoesMedicacao?: MedicationChange[]; nivelRisco?: "baixo" | "moderado" | "alto";
+  eventoGrave?: boolean; retornoObs?: string; concluidoPor?: string; atualizadoEm?: string;
 };
 
 export type AuditEntry = {
@@ -36,4 +49,4 @@ export type AuditEntry = {
   quando: string; quem: string; detalhe?: string;
 };
 
-export type Settings = { id: "local"; duracaoPadrao: number };
+export type Settings = { id: "local"; duracaoPadrao: number; seedHistoryVersion?: number };
